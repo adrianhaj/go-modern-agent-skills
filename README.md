@@ -42,7 +42,7 @@ Best-practice note: while fields such as `author` or `version` can be useful for
 Clone into a discoverable skills path:
 
 ```bash
-git clone https://github.com/<your-account>/go-modern-agent-skills.git ~/.claude/skills/go-modern-agent-skills
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.claude/skills/go-modern-agent-skills
 ```
 
 Then reference or invoke the skill by name when reviewing Go changes:
@@ -56,7 +56,7 @@ Use the review-go-modern skill to review this diff.
 Clone into a discoverable skills path:
 
 ```bash
-git clone https://github.com/<your-account>/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
 ```
 
 Codex-compatible tools commonly discover skills from `~/.agents/skills/` or workspace `.agents/skills/`.
@@ -64,7 +64,7 @@ Codex-compatible tools commonly discover skills from `~/.agents/skills/` or work
 ### Cursor
 
 ```bash
-git clone https://github.com/<your-account>/go-modern-agent-skills.git ~/.cursor/skills/go-modern-agent-skills
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.cursor/skills/go-modern-agent-skills
 ```
 
 ### Gemini CLI
@@ -72,7 +72,7 @@ git clone https://github.com/<your-account>/go-modern-agent-skills.git ~/.cursor
 If your setup supports extension-style skill repositories:
 
 ```bash
-gemini extensions install https://github.com/<your-account>/go-modern-agent-skills
+gemini extensions install https://github.com/adrianhaj/go-modern-agent-skills
 ```
 
 If not, clone it into your local skills directory used by your Gemini workflow.
@@ -80,7 +80,7 @@ If not, clone it into your local skills directory used by your Gemini workflow.
 ### OpenCode
 
 ```bash
-git clone https://github.com/<your-account>/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
 ```
 
 OpenCode commonly discovers skills from `.agents/skills/`, `.opencode/skills/`, and `.claude/skills/`.
