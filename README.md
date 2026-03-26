@@ -1,21 +1,134 @@
 # Go Modern Agent Skills
 
-Basic cross-client repository for reusable agent skills focused on modern Go development.
+AI agent skills are reusable instruction sets that extend coding assistants with domain-specific expertise, loaded on demand so they do not bloat context. This repository focuses on production-ready Go skills and review workflows for modern Go codebases.
 
-Author: `adrianhaj`  
-Version: `1.0.0`
+> [!IMPORTANT]
+> Built as a portable skills repository for cross-client use.
+>
+> The skills in this repo follow current best practices for `SKILL.md` structure, including YAML frontmatter, explicit trigger descriptions, and optional metadata such as author and version.
 
-## Overview
+## How to use
 
-This repository follows the portable skill layout used by repositories such as [`samber/cc-skills-golang`](https://github.com/samber/cc-skills-golang):
+**Install with [skills](https://skills.sh/) CLI** when your agent supports the Agent Skills format:
 
-- each skill lives in `skills/<skill-name>/SKILL.md`
-- each skill uses simple YAML frontmatter
-- repository-level metadata stays in the README
+```bash
+npx skills add https://github.com/adrianhaj/go-modern-agent-skills --skill '*'
+# or a single skill:
+npx skills add https://github.com/adrianhaj/go-modern-agent-skills --skill review-go-modern
+```
 
-For the first skill, the source was `/Users/adrian/.claude/skills/review-go-modern/SKILL.md`.
+<!-- prettier-ignore-start -->
 
-## Repository Layout
+<details>
+<summary>Claude Code</summary>
+
+```bash
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.claude/skills/go-modern-agent-skills
+```
+
+Use the skill by name in a prompt:
+
+```text
+Use the review-go-modern skill to review this diff.
+```
+
+</details>
+
+<details>
+<summary>Codex (OpenAI)</summary>
+
+Clone into the cross-client discovery path:
+
+```bash
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
+```
+
+Codex auto-discovers skills from `~/.agents/skills/` and `.agents/skills/`.
+
+</details>
+
+<details>
+<summary>Cursor</summary>
+
+Copy skills into the cross-client discovery directory:
+
+```bash
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.cursor/skills/go-modern-agent-skills
+```
+
+Cursor auto-discovers skills from `.agents/skills/` and `.cursor/skills/`.
+
+</details>
+
+<details>
+<summary>Gemini CLI</summary>
+
+```bash
+gemini extensions install https://github.com/adrianhaj/go-modern-agent-skills
+```
+
+If your Gemini setup does not use extensions, clone the repository into the local skills directory used by your workflow.
+
+</details>
+
+<details>
+<summary>Copilot</summary>
+
+Copy skills into the cross-client discovery directory:
+
+```bash
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.copilot/skills/go-modern-agent-skills
+```
+
+Copilot auto-discovers skills from `.copilot/skills/`.
+
+</details>
+
+<details>
+<summary>OpenCode</summary>
+
+Copy skills into the cross-client discovery directory:
+
+```bash
+git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
+```
+
+OpenCode auto-discovers skills from `.agents/skills/`, `.opencode/skills/`, and `.claude/skills/`.
+
+</details>
+
+<details>
+<summary>Other agents</summary>
+
+Most tools that support skill folders can consume this repository layout directly:
+
+```text
+skills/
+  <skill-name>/
+    SKILL.md
+```
+
+Each skill uses YAML frontmatter plus Markdown instructions, with optional metadata and linked reference files when needed.
+
+</details>
+
+<!-- prettier-ignore-end -->
+
+## Skills
+
+These skills are designed as focused, reusable units. Keep each skill small, explicit, and composable so multiple skills can coexist in one session.
+
+- `name` and `description` in YAML frontmatter drive skill discovery
+- optional metadata can document ownership, versioning, category, tags, and integration details
+- extra depth can live in `references/`, `scripts/`, or `assets/` inside each skill directory
+
+| Skill | Status | Description | Metadata |
+| --- | --- | --- | --- |
+| `review-go-modern` | ✅ | Reviews Go code in production Go 1.25-1.26 services, with emphasis on safety, concurrency, error handling, and modern idioms. | `author`, `version`, `category`, `tags`, `license` |
+
+## Skill structure
+
+Current best practices for repository layout:
 
 ```text
 .
@@ -26,95 +139,44 @@ For the first skill, the source was `/Users/adrian/.claude/skills/review-go-mode
         └── SKILL.md
 ```
 
-## Skill Metadata
+Current best practices for skill frontmatter:
 
-For portability across agents, the skill frontmatter is intentionally limited to:
-
-- `name`
-- `description`
-
-Best-practice note: while fields such as `author` or `version` can be useful for humans, they are not part of the common minimal format used by the reference repository. To avoid relying on client-specific parsing, this repository keeps those values at repository level instead of embedding them into every skill.
-
-## Installation And Use
-
-### Claude Code
-
-Clone into a discoverable skills path:
-
-```bash
-git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.claude/skills/go-modern-agent-skills
+```yaml
+---
+name: skill-name
+description: What it does and when to use it.
+license: MIT
+metadata:
+  author: adrianhaj
+  version: 1.0.0
+  category: category-name
+  tags:
+    - tag-one
+    - tag-two
+---
 ```
 
-Then reference or invoke the skill by name when reviewing Go changes:
+## Tuning skill triggers
 
-```text
-Use the review-go-modern skill to review this diff.
-```
+The `description` field is the main trigger surface, so keep it specific:
 
-### Codex
+- say what the skill does
+- say when it should be used
+- include recognizable task phrases
+- mention relevant languages, file types, or workflows when that improves triggering
 
-Clone into a discoverable skills path:
+If a skill becomes too broad, split it into narrower skills instead of making the description vague.
 
-```bash
-git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
-```
+## Contributing
 
-Codex-compatible tools commonly discover skills from `~/.agents/skills/` or workspace `.agents/skills/`.
+Recommended guidelines when adding more skills:
 
-### Cursor
-
-```bash
-git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.cursor/skills/go-modern-agent-skills
-```
-
-### Gemini CLI
-
-If your setup supports extension-style skill repositories:
-
-```bash
-gemini extensions install https://github.com/adrianhaj/go-modern-agent-skills
-```
-
-If not, clone it into your local skills directory used by your Gemini workflow.
-
-### OpenCode
-
-```bash
-git clone https://github.com/adrianhaj/go-modern-agent-skills.git ~/.agents/skills/go-modern-agent-skills
-```
-
-OpenCode commonly discovers skills from `.agents/skills/`, `.opencode/skills/`, and `.claude/skills/`.
-
-### Copilot And Other Agents
-
-Many agent tools can consume the same repository shape when cloned into their local skills directory. The portable assumption is:
-
-1. clone the repository into the tool's configured skills folder
-2. keep skills under `skills/<name>/SKILL.md`
-3. reference the skill by its `name` frontmatter
-
-## Skills
-
-### `review-go-modern`
-
-Reviews Go code for:
-
-- correctness and safety
-- concurrency issues
-- performance risks
-- modern Go 1.25-1.26 idioms
-
-Path: `skills/review-go-modern/SKILL.md`
-
-## Adding More Skills
-
-To add new skills, follow the same pattern:
-
-1. create `skills/<skill-name>/SKILL.md`
-2. include `name` and `description` frontmatter
-3. keep the content procedural and specific
-4. add the new skill to this README catalog
+- use kebab-case for the folder name and `name`
+- keep `SKILL.md` as the required entrypoint file
+- add optional metadata when it improves maintainability
+- keep the main instructions concise and move deeper material into `references/`
+- add new skills to the table above
 
 ## License
 
-This repository uses the existing project license in `LICENSE`.
+This repository uses the existing [MIT License](./LICENSE).

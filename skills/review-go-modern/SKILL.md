@@ -1,6 +1,15 @@
 ---
 name: review-go-modern
 description: Use when reviewing Go code in a production Go 1.25–1.26 service, especially when checking for modern idioms, concurrency safety, or error handling patterns
+license: MIT
+metadata:
+  author: adrianhaj
+  version: 1.0.0
+  category: code-review
+  tags:
+    - golang
+    - code-review
+    - modern-go
 ---
 
 Perform a thorough code review of the selected Go files in a production-grade
