@@ -124,7 +124,7 @@ These skills are designed as focused, reusable units. Keep each skill small, exp
 
 | Skill | Status | Description | Metadata |
 | --- | --- | --- | --- |
-| `review-go-modern` | ✅ | Reviews Go code in production Go 1.25-1.26 services, with emphasis on safety, concurrency, error handling, and modern idioms. | `author`, `version`, `category`, `tags`, `license` |
+| `review-go-modern` | ✅ | Reviews Go code in production Go 1.25-1.27 services, with emphasis on safety, concurrency, error handling, and modern idioms. | `author`, `version`, `category`, `tags`, `license` |
 
 ## Skill structure
 
